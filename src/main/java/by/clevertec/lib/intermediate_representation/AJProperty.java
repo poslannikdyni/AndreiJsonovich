@@ -1,0 +1,49 @@
+package by.clevertec.lib.intermediate_representation;
+
+public class AJProperty implements AJElement {
+    private String name;
+    private AJElement value;
+
+    public AJProperty(String name, AJElement value) {
+        this.name = name;
+        this.value = value;
+    }
+
+    @Override
+    public Type getType() {
+        return Type.PROPERTY;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public AJElement getValue() {
+        return value;
+    }
+
+    public static class AJPropertyBuilder {
+        private String name;
+        private AJElement value;
+
+        public AJPropertyBuilder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public AJPropertyBuilder setValue(AJElement value) {
+            this.value = value;
+            return this;
+        }
+
+        public AJProperty build(){
+            if(name == null || value == null) throw new RuntimeException("TODO"); //TODO
+            return new AJProperty(name, value);
+        }
+    }
+
+    public static AJPropertyBuilder builder() {
+        return new AJPropertyBuilder();
+    }
+}
+
