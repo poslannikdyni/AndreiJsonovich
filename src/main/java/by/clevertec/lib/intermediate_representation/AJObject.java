@@ -1,5 +1,6 @@
 package by.clevertec.lib.intermediate_representation;
 
+import by.clevertec.lib.exceptions.AndreiJsonovichInternalException;
 import by.clevertec.lib.printer.AJPrinter;
 
 import java.util.LinkedHashMap;
@@ -34,7 +35,7 @@ public class AJObject implements AJElement {
     public AJArray getAsArray(String propertyName) {
         var property = properties.get(propertyName);
         if (property == null) return null;
-        if (property.getValue().getType() != Type.ARRAY) throw new RuntimeException("TODO"); // TODO
+        if (property.getValue().getType() != Type.ARRAY) throw new AndreiJsonovichInternalException(propertyName + " must be an array");
 
         return (AJArray) property.getValue();
     }

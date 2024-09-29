@@ -1,5 +1,7 @@
 package by.clevertec.lib.intermediate_representation;
 
+import by.clevertec.lib.exceptions.AndreiJsonovichInternalException;
+
 public class AJProperty implements AJElement {
     private String name;
     private AJElement value;
@@ -37,7 +39,7 @@ public class AJProperty implements AJElement {
         }
 
         public AJProperty build(){
-            if(name == null || value == null) throw new RuntimeException("TODO"); //TODO
+            if(name == null || value == null) throw new NullPointerException("AJPropertyBuilder must has not null fields name and value");
             return new AJProperty(name, value);
         }
     }
