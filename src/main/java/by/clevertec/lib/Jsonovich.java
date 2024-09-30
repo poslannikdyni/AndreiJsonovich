@@ -5,6 +5,8 @@ import by.clevertec.lib.builder.AJElementBuilder;
 import by.clevertec.lib.builder.lexer.lexer.Lexer;
 import by.clevertec.lib.builder.parser.parser.Expr;
 import by.clevertec.lib.builder.parser.parser.Parser;
+import by.clevertec.lib.exceptions.AndreiJsonovichInternalException;
+import by.clevertec.lib.intermediate_representation.AJElement;
 import by.clevertec.lib.intermediate_representation.AJObject;
 import by.clevertec.lib.printer.AJPrinter;
 
@@ -16,8 +18,10 @@ public class Jsonovich {
     }
 
     public <T> String buildJson(T object) {
-        AJObject jObject = context.toAJObject(object);
-        return new AJPrinter().print(jObject);
+        var element = context.toAJElement(object);
+        if(element.getType() != AJElement.Type.OBJECT)
+            throw new AndreiJsonovichInternalException("Json convert to object failed. Check json content.");
+        return new AJPrinter().print((AJObject) element);
     }
 
     public <T> T buildObject(Class<T> clazz, String json) {
@@ -30,5 +34,4 @@ public class Jsonovich {
 
         return context.toUserType(clazz, jObject);
     }
-
 }

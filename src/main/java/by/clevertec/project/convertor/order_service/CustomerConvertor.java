@@ -20,7 +20,7 @@ public class CustomerConvertor implements AJConvertor<Customer> {
     }
 
     @Override
-    public AJObject toAJObject(Customer customer, AJConvertorContext context) {
+    public AJObject toAJElement(Customer customer, AJConvertorContext context) {
         AJObject object = new AJObject();
         object.addProperty("id", customer.getId().toString());
         object.addProperty("firstName", customer.getFirstName());
@@ -31,14 +31,15 @@ public class CustomerConvertor implements AJConvertor<Customer> {
             AJArray orders = new AJArray();
             object.addProperty("orders", orders);
             for (Order order : customer.getOrders()) {
-                orders.add(context.toAJObject(order));
+                orders.add(context.toAJElement(order));
             }
         }
         return object;
     }
 
     @Override
-    public Customer toUserType(AJObject object, AJConvertorContext context) {
+    public Customer toUserType(AJElement element, AJConvertorContext context) {
+        AJObject object = expectedObject(element);
         Customer customer = new Customer();
         customer.setId(UUID.fromString(object.getAsString("id")));
         customer.setFirstName(object.getAsString("firstName"));

@@ -20,7 +20,7 @@ public class ProductConvertor implements AJConvertor<Product> {
     }
 
     @Override
-    public AJObject toAJObject(Product product, AJConvertorContext context) {
+    public AJObject toAJElement(Product product, AJConvertorContext context) {
         AJObject object = new AJObject();
         object.addProperty("id", product.getId().toString());
         object.addProperty("name", product.getName());
@@ -56,7 +56,8 @@ public class ProductConvertor implements AJConvertor<Product> {
     }
 
     @Override
-    public Product toUserType(AJObject object, AJConvertorContext context) {
+    public Product toUserType(AJElement element, AJConvertorContext context) {
+        AJObject object = expectedObject(element);
         Product product = new Product();
         product.setId(UUID.fromString(object.getAsString("id")));
         product.setName(object.getAsString("name"));

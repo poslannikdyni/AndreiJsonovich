@@ -1,5 +1,6 @@
 package by.clevertec.lib.reflection.impl;
 
+import by.clevertec.lib.api.AJConvertorContext;
 import by.clevertec.lib.intermediate_representation.AJElement;
 import by.clevertec.lib.intermediate_representation.AJPrimitive;
 import by.clevertec.lib.reflection.TypeConvertor;
@@ -26,12 +27,12 @@ public class FloatConvertor implements TypeConvertor<Float> {
     }
 
     @Override
-    public AJElement toAJElement(Float field) {
+    public AJElement toAJElement(Float field, AJConvertorContext context){
         return new AJPrimitive(AJPrimitive.ContentPresentation.DOUBLE, field.toString());
     }
 
     @Override
-    public Float toUserType(AJElement element) {
+    public Float toUserType(AJElement element, AJConvertorContext context){
         var field = (AJPrimitive) element;
         return Float.parseFloat(field.getContent().toString());
     }

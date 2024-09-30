@@ -1,5 +1,6 @@
 package by.clevertec.lib.reflection.impl;
 
+import by.clevertec.lib.api.AJConvertorContext;
 import by.clevertec.lib.intermediate_representation.AJElement;
 import by.clevertec.lib.intermediate_representation.AJPrimitive;
 import by.clevertec.lib.reflection.TypeConvertor;
@@ -26,12 +27,12 @@ public class ByteConvertor implements TypeConvertor<Byte> {
     }
 
     @Override
-    public AJElement toAJElement(Byte field) {
+    public AJElement toAJElement(Byte field, AJConvertorContext context){
         return new AJPrimitive(AJPrimitive.ContentPresentation.LONG, field.toString());
     }
 
     @Override
-    public Byte toUserType(AJElement element) {
+    public Byte toUserType(AJElement element, AJConvertorContext context){
         var field = (AJPrimitive) element;
         return Byte.parseByte(field.getContent().toString());
     }

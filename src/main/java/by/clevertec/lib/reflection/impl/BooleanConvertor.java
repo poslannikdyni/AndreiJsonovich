@@ -28,12 +28,12 @@ public class BooleanConvertor implements TypeConvertor<Boolean> {
     }
 
     @Override
-    public AJElement toAJElement(Boolean field) {
+    public AJElement toAJElement(Boolean field, AJConvertorContext context){
         return new AJPrimitive(AJPrimitive.ContentPresentation.BOOLEAN, field.toString());
     }
 
     @Override
-    public Boolean toUserType(AJElement element) {
+    public Boolean toUserType(AJElement element, AJConvertorContext context){
         var field = (AJPrimitive) element;
         return Boolean.parseBoolean(field.getContent().toString());
     }

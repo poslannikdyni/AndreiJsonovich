@@ -20,7 +20,7 @@ public class OrderConvertor implements AJConvertor<Order> {
     }
 
     @Override
-    public AJObject toAJObject(Order order, AJConvertorContext context) {
+    public AJObject toAJElement(Order order, AJConvertorContext context) {
         AJObject object = new AJObject();
         object.addProperty("id", order.getId().toString());
 
@@ -28,7 +28,7 @@ public class OrderConvertor implements AJConvertor<Order> {
             AJArray products = new AJArray();
             object.addProperty("products", products);
             for (Product product : order.getProducts()) {
-                products.add(context.toAJObject(product));
+                products.add(context.toAJElement(product));
             }
         }
 
@@ -37,7 +37,8 @@ public class OrderConvertor implements AJConvertor<Order> {
     }
 
     @Override
-    public Order toUserType(AJObject object, AJConvertorContext context) {
+    public Order toUserType(AJElement element, AJConvertorContext context) {
+        AJObject object = expectedObject(element);
         Order order = new Order();
         order.setId(UUID.fromString(object.getAsString("id")));
         order.setCreateDate(OffsetDateTime.parse(object.getAsString("createDate")));

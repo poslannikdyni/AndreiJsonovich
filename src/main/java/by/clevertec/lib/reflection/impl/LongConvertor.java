@@ -1,5 +1,6 @@
 package by.clevertec.lib.reflection.impl;
 
+import by.clevertec.lib.api.AJConvertorContext;
 import by.clevertec.lib.intermediate_representation.AJElement;
 import by.clevertec.lib.intermediate_representation.AJPrimitive;
 import by.clevertec.lib.reflection.TypeConvertor;
@@ -26,12 +27,12 @@ public class LongConvertor implements TypeConvertor<Long> {
     }
 
     @Override
-    public AJElement toAJElement(Long field) {
+    public AJElement toAJElement(Long field, AJConvertorContext context){
         return new AJPrimitive(AJPrimitive.ContentPresentation.LONG, field.toString());
     }
 
     @Override
-    public Long toUserType(AJElement element) {
+    public Long toUserType(AJElement element, AJConvertorContext context){
         var field = (AJPrimitive) element;
         return Long.parseLong(field.getContent().toString());
     }

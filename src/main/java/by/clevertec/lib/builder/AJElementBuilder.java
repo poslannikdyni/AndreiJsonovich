@@ -67,6 +67,7 @@ public class AJElementBuilder implements Expr.Visitor<AJElement> {
             case LONG -> Long.parseLong(literal.value.toString());
             case DOUBLE -> Double.parseDouble(literal.value.toString());
             case NULL -> null;
+            case NOP -> throw new RuntimeException("TODO"); //TODO;
         };
     }
 }

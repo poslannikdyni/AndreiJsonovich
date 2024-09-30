@@ -1,6 +1,9 @@
 package by.clevertec;
 
 import by.clevertec.lib.Jsonovich;
+import by.clevertec.project.convertor.order_service.CustomerConvertor;
+import by.clevertec.project.convertor.order_service.OrderConvertor;
+import by.clevertec.project.convertor.order_service.ProductConvertor;
 import by.clevertec.project.domain.order_service.Customer;
 import by.clevertec.project.domain.simple.A;
 
@@ -10,6 +13,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Locale;
 
+import static by.clevertec.Data.buildTestData;
 import static by.clevertec.Data.getSimpleServiceTestData;
 
 
@@ -37,7 +41,7 @@ public class Main {
 //        System.out.println(p);
 //        System.out.println("testData == p " + (testData == p));
 //        System.out.println("testData.equals(p) " + (testData.equals(p)));
-//
+
 //        Customer p1 = jsonovich.buildObject(Customer.class, Data.getJson());
 //        System.out.println(p1);
 

@@ -1,5 +1,6 @@
 package by.clevertec.lib.reflection.impl;
 
+import by.clevertec.lib.api.AJConvertorContext;
 import by.clevertec.lib.intermediate_representation.AJElement;
 import by.clevertec.lib.intermediate_representation.AJPrimitive;
 import by.clevertec.lib.reflection.TypeConvertor;
@@ -26,12 +27,12 @@ public class DoubleConvertor implements TypeConvertor<Double> {
     }
 
     @Override
-    public AJElement toAJElement(Double field) {
+    public AJElement toAJElement(Double field, AJConvertorContext context){
         return new AJPrimitive(AJPrimitive.ContentPresentation.DOUBLE, field.toString());
     }
 
     @Override
-    public Double toUserType(AJElement element) {
+    public Double toUserType(AJElement element, AJConvertorContext context){
         var field = (AJPrimitive) element;
         return Double.parseDouble(field.getContent().toString());
     }

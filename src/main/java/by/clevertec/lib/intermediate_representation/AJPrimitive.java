@@ -6,7 +6,8 @@ public class AJPrimitive implements AJElement{
         BOOLEAN,
         LONG,
         DOUBLE,
-        NULL;
+        NULL,
+        NOP;
     }
 
     private ContentPresentation presentation;

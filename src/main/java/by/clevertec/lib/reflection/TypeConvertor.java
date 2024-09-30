@@ -12,8 +12,8 @@ public interface TypeConvertor<T> {
     Set<String> getAlias();
     AJElement.Type expectedType();
     AJPrimitive.ContentPresentation expectedPrimitiveContentPresentation();
-    AJElement toAJElement(T field);
-    T toUserType(AJElement element);
+    AJElement toAJElement(T field, AJConvertorContext context);
+    T toUserType(AJElement element, AJConvertorContext context);
 
     default void expected(AJElement.Type type, AJElement element) {
         if (element.getType() != type)

@@ -1,5 +1,6 @@
 package by.clevertec.lib.reflection.impl;
 
+import by.clevertec.lib.api.AJConvertorContext;
 import by.clevertec.lib.intermediate_representation.AJElement;
 import by.clevertec.lib.intermediate_representation.AJPrimitive;
 import by.clevertec.lib.reflection.TypeConvertor;
@@ -25,12 +26,12 @@ public class StringConverter implements TypeConvertor<String> {
     }
 
     @Override
-    public AJElement toAJElement(String field) {
+    public AJElement toAJElement(String field, AJConvertorContext context){
         return new AJPrimitive(AJPrimitive.ContentPresentation.STRING, field);
     }
 
     @Override
-    public String toUserType(AJElement element) {
+    public String toUserType(AJElement element, AJConvertorContext context){
         var field = (AJPrimitive) element;
         return field.getContent().toString();
     }

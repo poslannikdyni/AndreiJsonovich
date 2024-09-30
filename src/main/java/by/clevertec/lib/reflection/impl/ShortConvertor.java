@@ -1,5 +1,6 @@
 package by.clevertec.lib.reflection.impl;
 
+import by.clevertec.lib.api.AJConvertorContext;
 import by.clevertec.lib.intermediate_representation.AJElement;
 import by.clevertec.lib.intermediate_representation.AJPrimitive;
 import by.clevertec.lib.reflection.TypeConvertor;
@@ -26,12 +27,12 @@ public class ShortConvertor implements TypeConvertor<Short> {
     }
 
     @Override
-    public AJElement toAJElement(Short field) {
+    public AJElement toAJElement(Short field, AJConvertorContext context){
         return new AJPrimitive(AJPrimitive.ContentPresentation.LONG, field.toString());
     }
 
     @Override
-    public Short toUserType(AJElement element) {
+    public Short toUserType(AJElement element, AJConvertorContext context){
         var field = (AJPrimitive) element;
         return Short.parseShort(field.getContent().toString());
     }
