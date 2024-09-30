@@ -208,7 +208,22 @@ public class ReflectionConvertor {
                 if (convertor != null) {
                     field.set(instance, convertor.toUserType(property.getValue(), context));
                 } else if (Object.class.isAssignableFrom(field.getType())) {
-                    field.set(instance, context.toUserType(field.getType(), property));
+                    // if (genericType instanceof ParameterizedType) {
+                    //    ParameterizedType parameterizedType = (ParameterizedType) genericType;
+                    //    Type[] typeArguments = parameterizedType.getActualTypeArguments();
+                    //    if (typeArguments.length > 0) {
+                    //        Type elementType = typeArguments[0];
+                    //        if (elementType instanceof Class) {
+                    //            Class<?> someClass = (Class<?>) elementType;
+                    //            // Теперь у вас есть класс Some
+                    //            System.out.println("Тип элементов в списке: " + someClass.getName());
+                    //        }
+                    //    }
+                    //}
+
+//                    var ss = field.getGenericType().getType().getTypeName();
+//                    System.out.println(ss);
+                    field.set(instance, toUserType(field.getType(), property.getValue(), context));
                 } else {
                     throw new UnsupportedOperationException(fieldType.toString() + " dont know how convert. Please use custom convertor.");
                 }
