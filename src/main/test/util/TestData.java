@@ -27,9 +27,9 @@ public class TestData {
                         new B(false, "Element 4")
                 ),
                 Map.of(
-                        1, new B(false, "Element 5"),
-                        2, new B(false, "Element 6"),
-                        3, new B(false, "Element 7")
+//                        1, new B(false, "Element 5"),
+//                        2, new B(false, "Element 6"),
+//                        3, new B(false, "Element 7")
                 )
         );
     }

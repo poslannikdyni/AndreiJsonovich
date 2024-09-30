@@ -90,10 +90,17 @@ public class Lexer extends AbstractLexer {
     private static final char STRING_START = '\"';
 
     private void tokenizeString() {
-        next();
-        whileNotPresent(STRING_START, true);
-        String text = fromStartToCurrentPosition();
-        text = text.substring(1, text.length() - 1);
+        var symbol = next();
+        String text;
+        if(symbol != STRING_START) {
+            whileNotPresent(STRING_START, true);
+            text = fromStartToCurrentPosition();
+            if (text.length() > 2)
+                text = text.substring(1, text.length() - 1);
+        }else {
+            next();
+            text = "";
+        }
         addToken(new StringToken(text, getStartRowColumnPosition(), getCurrentRowColumnPosition()));
     }
 }

@@ -7,6 +7,8 @@ import by.clevertec.lib.intermediate_representation.AJObject;
 import by.clevertec.lib.intermediate_representation.AJPrimitive;
 import by.clevertec.lib.intermediate_representation.AJProperty;
 
+import java.util.function.BinaryOperator;
+
 public class AJPrinter {
     private StringBuilder sb = new StringBuilder();
 

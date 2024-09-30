@@ -14,7 +14,6 @@ public abstract class Expr {
         R visitJObjectExpr(JObject object);
         R visitPropertyExpr(Property property);
         R visitLiteralExpr(Literal literal);
-        R visitErrorExpr(Error error);
     }
 
     public static class Array extends Expr {
@@ -68,15 +67,6 @@ public abstract class Expr {
         @Override
         public <R> R accept(Visitor<R> visitor) {
             return visitor.visitLiteralExpr(this);
-        }
-    }
-
-    public static class Error extends Expr {
-        public Error() {}
-
-        @Override
-        public <R> R accept(Visitor<R> visitor) {
-            return visitor.visitErrorExpr(this);
         }
     }
 }

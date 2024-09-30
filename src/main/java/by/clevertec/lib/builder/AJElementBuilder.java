@@ -2,6 +2,7 @@ package by.clevertec.lib.builder;
 
 import by.clevertec.lib.builder.lexer.token.extra.NumberToken;
 import by.clevertec.lib.builder.parser.parser.Expr;
+import by.clevertec.lib.exceptions.AndreiJsonovichInternalException;
 import by.clevertec.lib.intermediate_representation.AJArray;
 import by.clevertec.lib.intermediate_representation.AJElement;
 import by.clevertec.lib.intermediate_representation.AJObject;
@@ -43,11 +44,6 @@ public class AJElementBuilder implements Expr.Visitor<AJElement> {
         var contentPresentation = getContentPresentation(literal);
         var value = getValueByContentPresentation(contentPresentation, literal);
         return new AJPrimitive(getContentPresentation(literal), value);
-    }
-
-    @Override
-    public AJElement visitErrorExpr(Expr.Error error) {
-        throw new RuntimeException("TODO"); //TODO
     }
 
     private AJPrimitive.ContentPresentation getContentPresentation(Expr.Literal literal) {

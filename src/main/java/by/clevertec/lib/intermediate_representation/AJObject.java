@@ -32,6 +32,10 @@ public class AJObject implements AJElement {
         properties.put(property.getName(), property);
     }
 
+    public AJProperty getProperty(String propertyName) {
+        return properties.get(propertyName);
+    }
+
     public AJArray getAsArray(String propertyName) {
         var property = properties.get(propertyName);
         if (property == null) return null;
@@ -59,4 +63,5 @@ public class AJObject implements AJElement {
     public AJElement getNull() {
         return new AJPrimitive(AJPrimitive.ContentPresentation.NULL, null);
     }
+
 }
